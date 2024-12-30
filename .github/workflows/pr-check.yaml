@@ -1,0 +1,27 @@
+name: Static Analysis
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+    steps:
+      - name: Check out files
+        uses: actions/checkout@v4
+
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli@2.70.7
+
+      - name: Install Salesforce Code Analyzer Plugin
+        run: sf plugins install @salesforce/sfdx-scanner@4.7.0
+
+      - name: Run SFDX Scanner - Report findings as comments
+        uses: mitchspano/sfdx-scan-pull-request@v0.1.16
+        with:
+          category: Performance,Security
+          report-mode: comments
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
