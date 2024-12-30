@@ -20,3 +20,5 @@ jobs:
         uses: mitchspano/sfdx-scan-pull-request@v0.1.16
         with:
           category: Performance,Security
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
