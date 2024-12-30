@@ -6,8 +6,8 @@ on:
 jobs:
   analyze:
     runs-on: ubuntu-latest
-#    permissions:
-#      checks: write
+    permissions:
+      checks: write
     steps:
       - name: Check out files
         uses: actions/checkout@v4
