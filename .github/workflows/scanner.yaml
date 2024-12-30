@@ -1,5 +1,6 @@
 name: Salesforce Code Analyzer Workflow
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
